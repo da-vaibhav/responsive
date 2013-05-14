@@ -1,0 +1,19 @@
+/* Constants */
+@context: 16; //Base browser font size
+
+.liquid_layout(@target, @context) {
+ 	@result: ((@target / @context) * 100);
+ 	width: 0% + @result;
+}
+
+.font(@fontWeight, @fontStyle, @fontSize, @lineHeight, @fontFamily){
+	@fontsize: (@fontSize/@context);
+	@fontype: (0em + @fontsize);
+	font: @fontWeight @fontStyle ~'@{fontype}/@{lineHeight}' @fontFamily;
+}
+
+.sticky_footer(@wrapSelector, @wrapperSelector, @footerHeight, @footerSelector){
+	.@{wrapSelector} {min-height: 100%;}
+	.@{wrapperSelector} {overflow:auto; padding-bottom: @footerHeight;}
+	.@{footerSelector} {position: relative; margin-top: -@footerHeight; height: @footerHeight; clear:both;}
+}
